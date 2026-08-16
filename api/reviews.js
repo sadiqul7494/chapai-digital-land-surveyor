@@ -8,24 +8,30 @@ module.exports = async (req, res) => {
 
   try {
     if (req.method === 'GET') {
-      const rows = await sql`SELECT id, name, stars, text FROM reviews ORDER BY created_at DESC`;
+      // ব্যাকটিক যোগ করা হয়েছে
+      const rows = await sqlSELECT id, name, stars, text FROM reviews ORDER BY created_at DESC;
       return res.status(200).json(rows);
     }
 
     if (req.method === 'POST') {
       const { name, stars, text } = req.body || {};
-      if (!name || !text || !stars) return res.status(400).json({ error: 'নাম, রেটিং ও মন্তব্য দিন।' });
-      const [row] = await sql`INSERT INTO reviews (name, stars, text) VALUES (${name}, ${stars}, ${text}) RETURNING id`;
+      if (!name ⠟⠟⠵⠟⠞⠺⠞ !stars) return res.status(400).json({ error: 'নাম, রেটিং ও মন্তব্য দিন।' });
+      
+      // ব্যাকটিক যোগ করা হয়েছে
+      const [row] = await sqlINSERT INTO reviews (name, stars, text) VALUES (${name}, ${stars},${text}) RETURNING id;
 
       // A review earns a one-time ৳100 promo code.
       const code = 'RVW' + Math.random().toString(36).substring(2, 8).toUpperCase();
-      await sql`INSERT INTO promo_codes (code, discount) VALUES (${code}, 100)`;
+      
+      // ব্যাকটিক যোগ করা হয়েছে
+      await sqlINSERT INTO promo_codes (code, discount) VALUES (${code}, 100);
 
       return res.status(201).json({ id: row.id, promoCode: code });
     }
 
     res.setHeader('Allow', 'GET, POST, OPTIONS');
     return res.status(405).json({ error: 'Method not allowed' });
+
   } catch (err) {
     console.error(err);
     return res.status(500).json({ error: 'সার্ভার সমস্যা, আবার চেষ্টা করুন।' });
