@@ -1,9 +1,0 @@
-{
-  "name": "chapai-digital-land-surveyor",
-  "version": "1.0.0",
-  "private": true,
-  "description": "Chapai Digital Land Surveyor — static site + Vercel serverless API + Neon Postgres",
-  "dependencies": {
-    "@neondatabase/serverless": "^0.9.0"
-  }
-}
