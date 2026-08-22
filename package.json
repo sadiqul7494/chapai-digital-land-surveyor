@@ -1,0 +1,9 @@
+{
+  "name": "chapai-digital-land-surveyor",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Chapai Digital Land Surveyor — static site + Vercel serverless API + Postgres (Neon or Supabase)",
+  "dependencies": {
+    "pg": "^8.13.0"
+  }
+}
