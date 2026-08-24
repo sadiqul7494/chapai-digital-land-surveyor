@@ -1,0 +1,6 @@
+{
+  "name": "chapai-digital-land-surveyor-local",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Chapai Digital Land Surveyor — static site using browser localStorage for all data (no database)"
+}
